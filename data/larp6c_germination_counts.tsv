@@ -1,0 +1,193 @@
+Rep	Letter	Time	Category	Value
+1	A	15	germinated	
+1	A	15	ungerminated	
+1	A	15	burst	
+1	A	15	unknown	
+1	A	30	germinated	62
+1	A	30	ungerminated	31
+1	A	30	burst	83
+1	A	30	unknown	32
+1	B	15	germinated	
+1	B	15	ungerminated	
+1	B	15	burst	
+1	B	15	unknown	
+1	B	30	germinated	106
+1	B	30	ungerminated	43
+1	B	30	burst	30
+1	B	30	unknown	11
+1	C	15	germinated	
+1	C	15	ungerminated	
+1	C	15	burst	
+1	C	15	unknown	
+1	C	30	germinated	262
+1	C	30	ungerminated	45
+1	C	30	burst	66
+1	C	30	unknown	29
+1	D	15	germinated	
+1	D	15	ungerminated	
+1	D	15	burst	
+1	D	15	unknown	
+1	D	30	germinated	114
+1	D	30	ungerminated	131
+1	D	30	burst	71
+1	D	30	unknown	43
+1	E	15	germinated	
+1	E	15	ungerminated	
+1	E	15	burst	
+1	E	15	unknown	
+1	E	30	germinated	186
+1	E	30	ungerminated	54
+1	E	30	burst	143
+1	E	30	unknown	42
+1	F	15	germinated	
+1	F	15	ungerminated	
+1	F	15	burst	
+1	F	15	unknown	
+1	F	30	germinated	222
+1	F	30	ungerminated	140
+1	F	30	burst	88
+1	F	30	unknown	73
+2	A	15	germinated	
+2	A	15	ungerminated	
+2	A	15	burst	
+2	A	15	unknown	
+2	A	30	germinated	63
+2	A	30	ungerminated	24
+2	A	30	burst	70
+2	A	30	unknown	23
+2	B	15	germinated	
+2	B	15	ungerminated	
+2	B	15	burst	
+2	B	15	unknown	
+2	B	30	germinated	147
+2	B	30	ungerminated	43
+2	B	30	burst	91
+2	B	30	unknown	15
+2	C	15	germinated	
+2	C	15	ungerminated	
+2	C	15	burst	
+2	C	15	unknown	
+2	C	30	germinated	149
+2	C	30	ungerminated	96
+2	C	30	burst	84
+2	C	30	unknown	39
+2	D	15	germinated	
+2	D	15	ungerminated	
+2	D	15	burst	
+2	D	15	unknown	
+2	D	30	germinated	46
+2	D	30	ungerminated	24
+2	D	30	burst	115
+2	D	30	unknown	7
+2	E	15	germinated	
+2	E	15	ungerminated	
+2	E	15	burst	
+2	E	15	unknown	
+2	E	30	germinated	58
+2	E	30	ungerminated	35
+2	E	30	burst	75
+2	E	30	unknown	15
+2	F	15	germinated	
+2	F	15	ungerminated	
+2	F	15	burst	
+2	F	15	unknown	
+2	F	30	germinated	187
+2	F	30	ungerminated	31
+2	F	30	burst	148
+2	F	30	unknown	41
+3	A	15	germinated	
+3	A	15	ungerminated	
+3	A	15	burst	
+3	A	15	unknown	
+3	A	30	germinated	52
+3	A	30	ungerminated	46
+3	A	30	burst	94
+3	A	30	unknown	22
+3	B	15	germinated	
+3	B	15	ungerminated	
+3	B	15	burst	
+3	B	15	unknown	
+3	B	30	germinated	89
+3	B	30	ungerminated	127
+3	B	30	burst	126
+3	B	30	unknown	56
+3	C	15	germinated	
+3	C	15	ungerminated	
+3	C	15	burst	
+3	C	15	unknown	
+3	C	30	germinated	304
+3	C	30	ungerminated	69
+3	C	30	burst	141
+3	C	30	unknown	76
+3	D	15	germinated	
+3	D	15	ungerminated	
+3	D	15	burst	
+3	D	15	unknown	
+3	D	30	germinated	242
+3	D	30	ungerminated	30
+3	D	30	burst	111
+3	D	30	unknown	75
+3	E	15	germinated	
+3	E	15	ungerminated	
+3	E	15	burst	
+3	E	15	unknown	
+3	E	30	germinated	146
+3	E	30	ungerminated	60
+3	E	30	burst	156
+3	E	30	unknown	61
+3	F	15	germinated	
+3	F	15	ungerminated	
+3	F	15	burst	
+3	F	15	unknown	
+3	F	30	germinated	84
+3	F	30	ungerminated	31
+3	F	30	burst	126
+3	F	30	unknown	21
+4	A	15	germinated	
+4	A	15	ungerminated	
+4	A	15	burst	
+4	A	15	unknown	
+4	A	30	germinated	141
+4	A	30	ungerminated	22
+4	A	30	burst	99
+4	A	30	unknown	20
+4	B	15	germinated	
+4	B	15	ungerminated	
+4	B	15	burst	
+4	B	15	unknown	
+4	B	30	germinated	66
+4	B	30	ungerminated	37
+4	B	30	burst	102
+4	B	30	unknown	20
+4	C	15	germinated	
+4	C	15	ungerminated	
+4	C	15	burst	
+4	C	15	unknown	
+4	C	30	germinated	234
+4	C	30	ungerminated	51
+4	C	30	burst	107
+4	C	30	unknown	46
+4	D	15	germinated	
+4	D	15	ungerminated	
+4	D	15	burst	
+4	D	15	unknown	
+4	D	30	germinated	381
+4	D	30	ungerminated	104
+4	D	30	burst	148
+4	D	30	unknown	118
+4	E	15	germinated	
+4	E	15	ungerminated	
+4	E	15	burst	
+4	E	15	unknown	
+4	E	30	germinated	157
+4	E	30	ungerminated	43
+4	E	30	burst	142
+4	E	30	unknown	57
+4	F	15	germinated	
+4	F	15	ungerminated	
+4	F	15	burst	
+4	F	15	unknown	
+4	F	30	germinated	243
+4	F	30	ungerminated	106
+4	F	30	burst	145
+4	F	30	unknown	80
