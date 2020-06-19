@@ -41,9 +41,9 @@ pollen_germ$group <- factor(pollen_germ$group,
                                 levels = c("WT", "larp6c"))
 color_vector <- c("#019E73", "#2558A8", "#9F5C82")
 
-# 1900x1500
+# Germination plot
 ggplot(pollen_germ, aes(x = group, y = percent, fill = Category)) +
-  geom_boxplot(size = 2) +
+  geom_boxplot(size = 1, outlier.size = 1, position = position_dodge(0.85), color = 'black') +
   scale_fill_manual(values = color_vector,
                     breaks = c("germinated", "ungerminated", "burst"),
                     labels = c("Germinated", "Ungerminated", "Burst")) +
@@ -53,21 +53,74 @@ ggplot(pollen_germ, aes(x = group, y = percent, fill = Category)) +
                      limits = c(0, 100)) +
   labs(title = "In vitro pollen germination", y = "Percent") +
   theme_bw() +
-  theme(axis.title = element_text(size = 52, face = "bold"),
-        axis.text = element_text(size = 56, face = "bold", color = "black"),
-        axis.text.x = element_text(margin = margin(5, 0, 0, 0)),
+  theme(axis.title = element_text(size = 28, face = 'bold'),
+        axis.text = element_text(size = 22, face = 'bold', color = 'black'),
+        axis.text.x = element_text(size = 26, face = 'bold', color = 'black'),
+        plot.title = element_text(size = 32, face = 'bold', margin = margin(0, 0, 10, 0)),
         axis.title.x = element_blank(),
-        axis.title.y = element_text(margin = margin(0, 20, 0, 0)),
-        plot.title = element_text(size = 72, face = "bold", margin = margin(0, 0, 40, 0)), 
-        axis.line = element_line(size = 2, color = "black"),
-        axis.ticks = element_line(size = 2, color = "black"),
-        axis.ticks.length = unit(10, "pt"),
-        plot.margin = margin(1, 1, 1, 1, "cm"),
+        axis.title.y = element_text(margin = margin(0, 10, 0, 0)),
         panel.border = element_blank(),
+        axis.line = element_line(size = 1, color = 'black'),
+        axis.ticks = element_line(size = 1, color = 'black'),
+        axis.ticks.length = unit(8, 'pt'),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, 'cm'),
+        panel.grid = element_blank(),
+        legend.title = element_text(size = 24, face = 'bold'),
+        legend.text = element_text(size = 20, face = 'bold'),
+        legend.position = 'right')
+
+ggsave(filename = './plots/germination.png',
+       device = 'png',
+       width = 8,
+       height = 6,
+       dpi = 400,
+       units = 'in')
+
+# Rearranging the factors
+pollen_germ$Category <- factor(pollen_germ$Category,
+                               levels = c("ungerminated", "germinated", "burst"))
+pollen_germ$group <- factor(pollen_germ$group,
+                            levels = c("WT", "larp6c"))
+color_vector <- c("#157E96", "#C49354")
+
+# Germination plot to match Lian's plot
+ggplot(pollen_germ, aes(x = Category, y = percent, fill = group)) +
+  geom_boxplot(size = 1, outlier.size = 1, position = position_dodge(0.85), color = 'black') +
+  scale_fill_manual(values = color_vector,
+                    breaks = c("WT", "larp6c"),
+                    labels = c("WT", "larp6c")) +
+  scale_x_discrete(labels = c("Ungerminated", "Germinated", "Burst")) +
+  scale_y_continuous(breaks = seq(0, 80, by = 20),
+                     labels = seq(0, 80, by = 20),
+                     limits = c(0, 80)) +
+  labs(title = "In vitro pollen germination", y = "Percent") +
+  theme_bw() +
+  theme(axis.title = element_text(size = 28, face = 'bold'),
+        axis.text = element_text(size = 22, face = 'bold', color = 'black'),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 20, face = 'bold', color = 'black'),
+        plot.title = element_text(size = 32, face = 'bold', margin = margin(0, 0, 10, 0)),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(margin = margin(0, 10, 0, 0)),
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, color = 'black'),
+        axis.ticks = element_line(size = 1, color = 'black'),
+        axis.ticks.length = unit(8, 'pt'),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, 'cm'),
         panel.grid = element_blank(),
         legend.title = element_blank(),
-        legend.text = element_text(size = 44, face = "bold")) #+
-  facet_wrap(~Rep)
+        legend.text = element_text(size = 20, face = 'bold'),
+        legend.position = 'right')
+  # Add facet wrap by trial by uncommenting the following three lines: 
+  #       strip.background = element_blank(),
+  #       strip.text = element_text(size = 28, face = 'bold')) +
+  # facet_wrap(~Rep)
+
+ggsave(filename = './plots/germination_lian.png',
+       device = 'png',
+       width = 8,
+       height = 8,
+       dpi = 400,
+       units = 'in')
 
 
 ###### Stats ######
