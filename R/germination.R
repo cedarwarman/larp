@@ -124,9 +124,17 @@ ggsave(filename = './plots/germination_lian.png',
 
 
 ###### Stats ######
-# Going to do the Pearson's chi-squared test for homogeneity
+# Going to do the Pearson's chi-squared test for homogeneity (here adding everything together)
 stats_df <- pollen_germ %>% group_by(group, Category) %>%
   summarize(n = sum(Value))
+
+# # Uncomment this section to do the reps individually
+# stats_df <- pollen_germ %>% 
+#   ungroup() %>% 
+#   filter(Rep == 1) %>%
+#   group_by(group, Category) %>%
+#   summarize(n = sum(Value))
+
 
 # Making the contingency table
 contingency_table <- matrix(c(stats_df$n[stats_df$group == "larp6c" & stats_df$Category == "burst"],
