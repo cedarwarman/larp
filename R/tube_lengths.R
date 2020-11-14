@@ -93,13 +93,11 @@ ggplot(tubes_summary, aes(x = genotype, y = mean_tube_length, fill = genotype)) 
 
 
 ###### New paper plot ######
-ggplot(plot_tubes, aes(x = rep_number, y = tube_length, fill = genotype)) +
+plot_tubes$genotype <- factor(plot_tubes$genotype, levels = c("WT", "larp6c"))
+ggplot(plot_tubes, aes(x = genotype, y = tube_length, fill = genotype)) +
   geom_boxplot(size = 1, outlier.size = 1, position = position_dodge(0.85), color = 'black') +
-  scale_fill_manual(values = c('#5c5c5c', 'white')) +
-  scale_x_discrete(labels = c("Rep 1", 
-                              "Rep 2", 
-                              "Rep 3", 
-                              "Rep 4")) +
+  scale_fill_manual(values = c('white', 'white')) +
+  scale_x_discrete(labels = c("WT", "larp6c")) +
   labs(title = "larp6c tube lengths", 
        y = "Pollen tube length (µm)") +
   scale_y_continuous(breaks = seq(0, 320, by = 40),
@@ -107,9 +105,10 @@ ggplot(plot_tubes, aes(x = rep_number, y = tube_length, fill = genotype)) +
                      limits = c(0, 320),
                      expand = c(0, 0)) +
   theme_bw() +
-  theme(axis.title = element_text(size = 28, face = 'bold'),
+  theme(axis.title = element_text(size = 26, face = 'bold'),
         axis.text = element_text(size = 22, face = 'bold', color = 'black'),
-        axis.text.x = element_text(size = 26, face = 'bold', color = 'black'),
+        axis.text.x = element_text(size = 27, face = 'bold', color = 'black', 
+                                   margin = margin(10, 0, 0, 0)),
         # plot.title = element_text(size = 32, face = 'bold', margin = margin(0, 0, 10, 0)),
         plot.title = element_blank(),
         axis.title.x = element_blank(),
@@ -124,8 +123,8 @@ ggplot(plot_tubes, aes(x = rep_number, y = tube_length, fill = genotype)) +
 
 ggsave(filename = './plots/tube_lengths.png',
        device = 'png',
-       width = 8,
-       height = 6,
+       width = 4,
+       height = 7.5,
        dpi = 400,
        units = 'in')
 

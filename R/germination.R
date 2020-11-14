@@ -123,6 +123,131 @@ ggsave(filename = './plots/germination_lian.png',
        units = 'in')
 
 
+# Germination boxplot for paper -------------------------------------------
+# Grabbing the data
+john_germ <- read.csv(file = './data/larp6c_germination_data_from_john.csv')
+colnames(john_germ) <- c("germinated", 
+                         "ungerminated", 
+                         "burst", 
+                         "unknown", 
+                         "rep", 
+                         "genotype", 
+                         "time", 
+                         "plant_letter", 
+                         "order")
+
+# Tidying structure
+john_germ <- pivot_longer(john_germ, 
+                          germinated:unknown, 
+                          names_to = "category", 
+                          values_to = "count")
+john_germ$time <- sub('^.', '', john_germ$time)
+john_germ <- john_germ %>% unite(grouped_name, genotype:time, sep = '_', remove = FALSE)
+
+# Getting percentages
+john_germ <- john_germ %>% filter(category != "unknown")
+john_germ <- john_germ %>% group_by(time, rep, order)
+john_germ <- john_germ %>% mutate(percent = 100 * (count / sum(count)))
+
+# Making the plot (boxplot faceted)
+john_germ$category <- factor(john_germ$category,
+                               levels = c("germinated", "ungerminated", "burst"))
+john_germ$grouped_name <- factor(john_germ$grouped_name,
+                            levels = c("WT_15", "WT_30", 
+                                       "larp6c_15", "larp6c_30"))
+john_germ$genotype <- factor(john_germ$genotype, levels = c("WT", "larp6c"))
+# color_vector <- c("#7DFFA0", "#97FFFF", "#FFB8F0")
+# color_vector <- c("#A5FDAF", "#BCBCBC", "#FFB8EB") # watermelon
+color_vector <- c("#44AA99", "#636363", "#d6d6d6")
+
+ggplot(john_germ, aes(x = time, y = percent, fill = category)) +
+  geom_boxplot(size = 1, outlier.size = 1, position = position_dodge(0.85), color = 'black') +
+  scale_fill_manual(values = color_vector,
+                    breaks = c("germinated", "ungerminated", "burst"),
+                    labels = c("Germinated", "Ungerminated", "Burst")) +
+  scale_x_discrete(labels = c("15 min", "30 min", "15 min", "30 min")) +
+  scale_y_continuous(breaks = seq(0, 70, by = 10),
+                     labels = seq(0, 70, by = 10),
+                     limits = c(0, 72)) +
+  labs(title = "In vitro pollen germination", y = "Percent") +
+  theme_bw() +
+  theme(axis.title = element_text(size = 26, face = 'bold'),
+        axis.text = element_text(size = 22, face = 'bold', color = 'black'),
+        axis.text.x = element_text(size = 20, face = 'bold', color = 'black'),
+        # plot.title = element_text(size = 32, face = 'bold', margin = margin(0, 0, 10, 0)),
+        plot.title = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(margin = margin(0, 10, 0, 0)),
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, color = 'black'),
+        axis.ticks = element_line(size = 1, color = 'black'),
+        axis.ticks.length = unit(8, 'pt'),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, 'cm'),
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.text = element_text(size = 20, face = 'bold'),
+        legend.position = 'none',
+        strip.background = element_blank(),
+        strip.placement = "outside",
+        strip.text = element_text(size = 26, face = 'bold')) +
+  facet_wrap(~ genotype, strip.position = "bottom")
+
+ggsave(filename = './plots/germination_boxplot.png',
+       device = 'png',
+       width = 7,
+       height = 7.5,
+       dpi = 400,
+       units = 'in')
+
+# Jitter plot
+color_vector <- c("#009899", "#009928", "#990077")
+ggplot(john_germ, aes(x = time, y = percent, color = category)) +
+  geom_jitter(position = position_jitterdodge(0.5),
+              shape = 16,
+              size = 3,
+              stroke = 1) +
+  scale_color_manual(values = color_vector,
+                    breaks = c("ungerminated", "germinated", "burst"),
+                    labels = c("Ungerminated", "Germinated", "Burst")) +
+  stat_summary(fun = mean,
+               geom = "point",
+               shape=95,
+               size=15,
+               # color = "black",
+               aes(fill = category),
+               position = position_dodge(0.8),
+               show.legend = FALSE) +
+  scale_x_discrete(labels = c("15 min", "30 min", "15 min", "30 min")) +
+  scale_y_continuous(breaks = seq(0, 70, by = 10),
+                     labels = seq(0, 70, by = 10),
+                     limits = c(0, 72)) +
+  labs(title = "In vitro pollen germination", y = "Percent") +
+  theme_bw() +
+  theme(axis.title = element_text(size = 28, face = 'bold'),
+        axis.text = element_text(size = 22, face = 'bold', color = 'black'),
+        axis.text.x = element_text(size = 20, face = 'bold', color = 'black'),
+        plot.title = element_text(size = 32, face = 'bold', margin = margin(0, 0, 10, 0)),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(margin = margin(0, 10, 0, 0)),
+        panel.border = element_blank(),
+        axis.line = element_line(size = 1, color = 'black'),
+        axis.ticks = element_line(size = 1, color = 'black'),
+        axis.ticks.length = unit(8, 'pt'),
+        plot.margin = margin(0.5, 0.5, 0.5, 0.5, 'cm'),
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.text = element_text(size = 20, face = 'bold'),
+        legend.position = 'right',
+        strip.background = element_blank(),
+        strip.placement = "outside",
+        strip.text = element_text(size = 28, face = 'bold')) +
+  facet_wrap(~ genotype, strip.position = "bottom")
+
+# Line plot
+color_vector <- c("#009899", "#009928", "#990077")
+
+
+
 ###### Stats ######
 # Going to do the Pearson's chi-squared test for homogeneity (here adding everything together)
 stats_df <- pollen_germ %>% group_by(group, Category) %>%
